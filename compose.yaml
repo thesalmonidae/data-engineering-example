@@ -1,0 +1,86 @@
+services:
+  kafka:
+    image: apache/kafka:3.7.0
+    environment:
+      KAFKA_LISTENERS: PLAINTEXT://data-toolbox-kafka-1:9094,EXTERNAL://data-toolbox-kafka-1:9092,CONTROLLER://data-toolbox-kafka-1:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://data-toolbox-kafka-1:9094,EXTERNAL://data-toolbox-kafka-1:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_PROCESS_ROLES: controller,broker
+      KAFKA_NODE_ID: 1
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@data-toolbox-kafka-1:9093
+      KAFKA_LOG_DIRS: /tmp/kafka-logs
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSITION_STATE_LOG_REPLICATION_FACTOR: 1
+    networks:
+      - data-toolbox
+    ports:
+      - "9092:9092"
+    volumes:
+      - ./data/kafka/kafka-logs:/tmp/kafka-logs
+  kafka-exporter:
+    image: danielqsj/kafka-exporter:v1.7.0
+    networks:
+      - data-toolbox
+    ports:
+      - "9308:9308"
+    command:
+      - "--kafka.server=data-toolbox-kafka-1:9092"
+  prometheus:
+    image: prom/prometheus:v2.52.0
+    volumes:
+      - ./data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - data-toolbox
+    ports:
+      - "9090:9090"
+  grafana:
+    image: grafana/grafana:10.4.4
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+    user: "0"
+    networks:
+      - data-toolbox
+    ports:
+      - "3000:3000"
+  postgres:
+    image: postgres:15.7
+    environment:
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - data-toolbox
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+  superset:
+    image: apache/superset:latest
+    environment:
+      - SUPERSET_LOAD_EXAMPLES=yes
+      - SUPERSET_SECRET_KEY=foobar
+      - SUPERSET_WEBSERVER_PORT=8088
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=data-toolbox-postgres-1
+      - POSTGRES_PORT=5432
+    networks:
+      - data-toolbox
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./resources/superset/superset_config.py:/app/pythonpath/superset_config.py
+    depends_on:
+      - postgres
+    entrypoint: >
+      /bin/bash -c "
+      superset db upgrade &&
+      superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@example.com --password admin &&
+      superset init &&
+      superset run -p 8088 -h 0.0.0.0 --with-threads --reload --debugger"
+networks:
+  data-toolbox:
+    name: data-toolbox
+    external: true

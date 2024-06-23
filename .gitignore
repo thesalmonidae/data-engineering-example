@@ -1,0 +1,6 @@
+data/
+java/examples/iot2kafka/target/
+java/examples/kafka2postgres/target/
+java/examples/postgres2app/target/
+node/examples/iot-app-backend/node_modules/
+node/examples/iot-app-frontend/node_modules/

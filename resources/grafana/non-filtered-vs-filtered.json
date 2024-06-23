@@ -1,0 +1,401 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": false,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "links": [],
+    "panels": [
+      {
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "DATASOURCE_UID_PLACEHOLDER"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "blue",
+              "mode": "fixed"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "degree"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 1,
+        "options": {
+          "basemap": {
+            "config": {},
+            "name": "Layer 0",
+            "type": "default"
+          },
+          "controls": {
+            "mouseWheelZoom": true,
+            "showAttribution": true,
+            "showDebug": false,
+            "showMeasure": false,
+            "showScale": false,
+            "showZoom": true
+          },
+          "layers": [
+            {
+              "config": {
+                "arrow": 0,
+                "style": {
+                  "color": {
+                    "fixed": "#30f92e"
+                  },
+                  "lineWidth": 2,
+                  "opacity": 1,
+                  "rotation": {
+                    "fixed": 0,
+                    "max": 360,
+                    "min": -360,
+                    "mode": "mod"
+                  },
+                  "size": {
+                    "fixed": 1,
+                    "max": 15,
+                    "min": 2
+                  },
+                  "symbol": {
+                    "fixed": "img/icons/marker/circle.svg",
+                    "mode": "fixed"
+                  },
+                  "symbolAlign": {
+                    "horizontal": "center",
+                    "vertical": "center"
+                  },
+                  "textConfig": {
+                    "fontSize": 12,
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "textAlign": "center",
+                    "textBaseline": "middle"
+                  }
+                }
+              },
+              "filterData": {
+                "id": "byRefId",
+                "options": "A"
+              },
+              "location": {
+                "latitude": "lat",
+                "longitude": "lon",
+                "mode": "coords"
+              },
+              "name": "Layer 1",
+              "tooltip": true,
+              "type": "route"
+            },
+            {
+              "config": {
+                "arrow": 0,
+                "style": {
+                  "color": {
+                    "fixed": "dark-orange"
+                  },
+                  "lineWidth": 2,
+                  "opacity": 1,
+                  "rotation": {
+                    "fixed": 0,
+                    "max": 360,
+                    "min": -360,
+                    "mode": "mod"
+                  },
+                  "size": {
+                    "fixed": 1,
+                    "max": 15,
+                    "min": 2
+                  },
+                  "symbol": {
+                    "fixed": "img/icons/marker/circle.svg",
+                    "mode": "fixed"
+                  },
+                  "symbolAlign": {
+                    "horizontal": "center",
+                    "vertical": "center"
+                  },
+                  "textConfig": {
+                    "fontSize": 12,
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "textAlign": "center",
+                    "textBaseline": "middle"
+                  }
+                }
+              },
+              "filterData": {
+                "id": "byRefId",
+                "options": "B"
+              },
+              "location": {
+                "latitude": "filtered_lat",
+                "longitude": "filtered_lon",
+                "mode": "coords"
+              },
+              "name": "Layer 2",
+              "opacity": 1,
+              "tooltip": true,
+              "type": "route"
+            },
+            {
+              "config": {
+                "showLegend": true,
+                "style": {
+                  "color": {
+                    "fixed": "#30f92e"
+                  },
+                  "opacity": 0.2,
+                  "rotation": {
+                    "fixed": 0,
+                    "max": 360,
+                    "min": -360,
+                    "mode": "mod"
+                  },
+                  "size": {
+                    "fixed": 2,
+                    "max": 15,
+                    "min": 2
+                  },
+                  "symbol": {
+                    "fixed": "img/icons/marker/circle.svg",
+                    "mode": "fixed"
+                  },
+                  "symbolAlign": {
+                    "horizontal": "center",
+                    "vertical": "center"
+                  },
+                  "textConfig": {
+                    "fontSize": 12,
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "textAlign": "center",
+                    "textBaseline": "middle"
+                  }
+                }
+              },
+              "filterData": {
+                "id": "byRefId",
+                "options": "A"
+              },
+              "location": {
+                "mode": "auto"
+              },
+              "name": "Non-filtered path",
+              "tooltip": true,
+              "type": "markers"
+            },
+            {
+              "config": {
+                "showLegend": true,
+                "style": {
+                  "color": {
+                    "fixed": "dark-orange"
+                  },
+                  "opacity": 0.4,
+                  "rotation": {
+                    "fixed": 0,
+                    "max": 360,
+                    "min": -360,
+                    "mode": "mod"
+                  },
+                  "size": {
+                    "fixed": 2,
+                    "max": 15,
+                    "min": 2
+                  },
+                  "symbol": {
+                    "fixed": "img/icons/marker/circle.svg",
+                    "mode": "fixed"
+                  },
+                  "symbolAlign": {
+                    "horizontal": "center",
+                    "vertical": "center"
+                  },
+                  "text": {
+                    "fixed": "",
+                    "mode": "fixed"
+                  },
+                  "textConfig": {
+                    "fontSize": 12,
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "textAlign": "center",
+                    "textBaseline": "middle"
+                  }
+                }
+              },
+              "filterData": {
+                "id": "byRefId",
+                "options": "B"
+              },
+              "location": {
+                "latitude": "filtered_lat",
+                "longitude": "filtered_lon",
+                "mode": "coords"
+              },
+              "name": "Filtered path",
+              "tooltip": true,
+              "type": "markers"
+            }
+          ],
+          "tooltip": {
+            "mode": "details"
+          },
+          "view": {
+            "allLayers": true,
+            "id": "fit",
+            "lastOnly": false,
+            "lat": 0,
+            "layer": "Layer 1",
+            "lon": 0,
+            "zoom": 15
+          }
+        },
+        "pluginVersion": "10.4.4",
+        "targets": [
+          {
+            "datasource": {
+              "type": "grafana-postgresql-datasource",
+              "uid": "DATASOURCE_UID_PLACEHOLDER"
+            },
+            "editorMode": "code",
+            "format": "table",
+            "rawQuery": true,
+            "rawSql": "SELECT\r\n  id,\r\n  timestamp,\r\n  lon,\r\n  lat\r\nFROM\r\n  iot\r\nWHERE\r\n  timestamp BETWEEN $__timeFrom() AND $__timeTo()\r\n  AND id = '$id'\r\nORDER BY\r\n  timestamp;",
+            "refId": "A",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            },
+            "table": "iot"
+          },
+          {
+            "datasource": {
+              "type": "grafana-postgresql-datasource",
+              "uid": "DATASOURCE_UID_PLACEHOLDER"
+            },
+            "editorMode": "code",
+            "format": "table",
+            "hide": false,
+            "rawQuery": true,
+            "rawSql": "SELECT\r\n  id,\r\n  timestamp,\r\n  filtered_lon,\r\n  filtered_lat\r\nFROM\r\n  iot\r\nWHERE\r\n  timestamp BETWEEN $__timeFrom() AND $__timeTo()\r\n  AND id = '$id'\r\nORDER BY\r\n  timestamp;",
+            "refId": "B",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            },
+            "table": "iot"
+          }
+        ],
+        "title": "Non-Filtered Path vs Filtered Path",
+        "type": "geomap"
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 39,
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": true,
+            "text": "0826c432-38db-480d-9d10-60a4992c3481",
+            "value": "0826c432-38db-480d-9d10-60a4992c3481"
+          },
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "DATASOURCE_UID_PLACEHOLDER"
+          },
+          "definition": "SELECT DISTINCT(id) FROM iot",
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "id",
+          "options": [],
+          "query": "SELECT DISTINCT(id) FROM iot",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "Non-Filtered Path vs Filtered Path",
+    "version": 1,
+    "weekStart": ""
+  }

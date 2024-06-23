@@ -1,0 +1,23 @@
+{
+    "name": "java-devcontainer",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "runArgs": [
+        "--name",
+        "java-devcontainer",
+        "--network",
+        "data-toolbox"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "vscjava.vscode-maven"
+            ]
+        }
+    },
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "workspaceFolder": "/workspace"
+}
