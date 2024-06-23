@@ -1,5 +1,5 @@
-# data-toolbox
-The `data-toolbox` is an example GitHub project for anyone who has interest on data engineering.
+# data-engineering-example
+The `data-engineering-example` is an example GitHub project for anyone who has interest on data engineering.
 
 ## Setup
 
