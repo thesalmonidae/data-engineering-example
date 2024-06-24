@@ -13,7 +13,7 @@ Create a Docker network with `make docker/network/create`. Then start the Docker
 Start three VSCode instances with `code .`, `code java` and `code python` commands. In the Java and
 Python VScode instances run `ctrl+shift+p` and build the devcontainers.
 
-Then create resources with `resources/create`.
+Then create resources with `make resources/create`.
 
 At this point, you should have three VSCode instances, one in your host, one Java devcontainer and one
 Python devcontainer. Then the Docker compose will start: Grafana, Kafka, Kafka Exporter, Postgres,
