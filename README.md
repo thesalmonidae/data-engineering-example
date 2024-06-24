@@ -13,8 +13,6 @@ Create a Docker network with `make docker/network/create`. Then start the Docker
 Start three VSCode instances with `code .`, `code java` and `code python` commands. In the Java and
 Python VScode instances run `ctrl+shift+p` and build the devcontainers.
 
-Then create resources with `make resources/create`.
-
 At this point, you should have three VSCode instances, one in your host, one Java devcontainer and one
 Python devcontainer. Then the Docker compose will start: Grafana, Kafka, Kafka Exporter, Postgres,
 Prometheus and Superset containers.
@@ -26,13 +24,16 @@ All of these containers are in a same Docker network. What this means in practic
 of them are able to communicate with each other. Whatever Java or Python application you develop, you
 can communicate with other containers.
 
+Then create resources with `make resources/create` at the host VSCode instance. Then go to the Python devcontainer and run `make postgres/create`. This requires the psycopg library, which may not be available at the host's Python,
+but it is available in the Python devcontainer.
+
 Now go into the Java devcontainer. Start Flink cluster with `make flink/start`. Then start the Camel application for ingesting the data from the IoT devices with `make iot2kafka/start`. Then start the Flink application that
 is calculating the moving average and enriching the original data with filtered data with `make kafka2postgres/start`. Then start the another Camel application that exposes the REST API for the enriched data with
 `make postgres2app/start`.
 
 !["A view into Java Devcontainer"](./pictures/java-devcontainer.png)
 
-Then go into the Python devcontainer. Star the IoT simulator with `make iot-simulator/start`. By default it
+Then go again into the Python devcontainer. Star the IoT simulator with `make iot-simulator/start`. By default it
 will generate five IoT devices and they start sending their location every second into the system.
 
 !["A view into Python Devcontainer"](./pictures/python-devcontainer.png)

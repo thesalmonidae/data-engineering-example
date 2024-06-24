@@ -7,3 +7,11 @@ help:
 
 iot-simulator/start: ## Start IoT simulator
 	python3 examples/iot-simulator/iot_simulator.py
+
+##@ Postgres
+
+postgres/create: ## Create IoT database
+	python3 examples/postgres/create_database.py
+
+postgres/delete: ## Delete IoT database
+	python3 examples/postgres/delete_database.py
